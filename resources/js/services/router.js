@@ -2,10 +2,9 @@ import { createWebHistory, createRouter } from "vue-router";
 import store from '../services/store';
 import axios from 'axios';
 
-
-
-import Home from '../pages/IndexPages/index.vue';
-import Test from '../pages/testPages/test.vue';
+import Home from '../pages/IndexPages/home.vue';
+import CookiePolicy from  '../pages/CookiePolicy/cookiePolicy.vue';
+import PageNotFound from '../pages/systemPages/PageNotFound.vue';
 
 import Login from '../pages/AuthenticationPages/login.vue';
 import Register from '../pages/AuthenticationPages/register.vue';
@@ -21,9 +20,6 @@ if(import.meta.env.DEV == true){
     localPath = import.meta.env.VITE_APP_URL;
 }
 
-
-
-
 const router = createRouter({
     mode: 'history',
     linkActiveClass: 'active',
@@ -34,10 +30,14 @@ const router = createRouter({
             path: localPath + '/',
             name: 'home',
             component: Home,
-
             meta: {
                 auth: true,
             }
+        },
+        {
+            path: localPath + '/cookie-policy',
+            name: 'cookiePolicy',
+            component: CookiePolicy,
         },
         {
             path: localPath + '/login',
@@ -100,6 +100,12 @@ const router = createRouter({
             name: 'guest',
             component: Login,
         },
+
+        {
+            path: localPath + '/:pathMatch(.*)*',
+            name: 'PageNotFound',
+            component: PageNotFound,
+        }
     ]
 });
 
@@ -129,12 +135,21 @@ router.beforeEach((to, from, next) => {
         }, 250) ;
 
         getUser.then((user) =>{
+            if(to.name == 'home' && user == undefined){
+                next();
+                return;
+            }
+
+            if(to.fullPath == '/' && user == undefined){
+                next();
+                return;
+            }
+
             if(user == undefined){
                 next({ name: 'guest'});
+                return;
             }
             if(!user.email_verified_at){
-                console.log(user);
-                console.log(user.email_verified_at);
                 next({name: 'verifyEmailFirst'});
                 return;
             }

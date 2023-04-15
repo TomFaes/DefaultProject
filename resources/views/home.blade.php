@@ -8,27 +8,18 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'berco') }}</title>
+    <title>{{ config('app.name', 'Default project') }}</title>
 
     <!-- Scripts -->
     @vite('resources/js/app.js')
-
-    <!--
-    <script src="{{ asset('js/app.js') }}" defer></script>
-    -->
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
 
     <!-- Styles -->
-
-    <!--
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    -->
+    <link rel="stylesheet" type="text/css" href="{{asset("vendor/cookie-consent/css/cookie-consent.css")}}">
 </head>
 <body>
-    <div id="app">
-
-    </div>
+    <div id="app"></div>
 </body>
 </html>

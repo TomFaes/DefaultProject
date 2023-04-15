@@ -50,5 +50,4 @@ Route::group(['middleware' => 'auth:sanctum'] , function(){
         route::delete('profile', 'destroy');
     });
     Route::post('password', [PasswordController::class, 'update']);
-    
 });

@@ -7,16 +7,11 @@ import store from '../js/services/store';
 import '../sass/app.scss';
 import * as bootstrap from 'bootstrap';
 
-import App from './pages/IndexPages/index.vue';
+//import App from './pages/IndexPages/index.vue';
+import App from './pages/IndexPages/main.vue';
 const app = createApp(App);
 
 app.use(router);
 app.use(store);
-/*
-
-
-
-app.component("globalLayout", globalLayout);
-*/
 
 app.mount('#app');

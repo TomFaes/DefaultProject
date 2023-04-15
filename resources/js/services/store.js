@@ -14,7 +14,6 @@ export default new createStore({
     message: '',
   },
 
-
   mutations: {
     setAuthentication(state, status){
         state.authenticated = status;
@@ -25,8 +24,6 @@ export default new createStore({
     setRole(state, role){
         state.role = role;
     },
-
-
     setMessage(state, message){
       state.message = message;
     },

@@ -33,14 +33,19 @@ export default {
     },
 
     props: {
-        user: {},
+        //user: {},
+    },
+
+    computed: {
+        user(){
+            return this.$store.state.loggedInUser;
+        },
     },
 
     watch: {
         user(){
             this.setData();
         }
-
     },
 
     methods: {

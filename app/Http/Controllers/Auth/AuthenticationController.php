@@ -16,7 +16,7 @@ class AuthenticationController extends BaseController
         $input['password'] = bcrypt($input['password']);
         $input['role'] = 'User';
         $user = User::create($input);
-        $success['token'] =  $user->createToken('Berco')->plainTextToken;
+        $success['token'] =  $user->createToken('defaultProject')->plainTextToken;
         $success['name'] = $user->first_name." ".$user->name;
 
         event(new Registered($user));
@@ -31,7 +31,7 @@ class AuthenticationController extends BaseController
     {
         if(Auth::attempt(['email' => $request->email, 'password' => $request->password])){
             $user = Auth::user();
-            $success['token'] =  $user->createToken('Berco')->plainTextToken;
+            $success['token'] =  $user->createToken('defaultProject')->plainTextToken;
             $success['name'] = $user->first_name." ".$user->name;
 
             return $this->sendResponse($success, 'User login successfully.');

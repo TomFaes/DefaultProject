@@ -90,7 +90,6 @@ class AuthTest extends TestCase
         $this->assertEquals("You are logged out", $response_data->data);
     }
 
-
     public function test_forgot_password_controller_with_correct_email()
     {
         $response = $this->postJson('/api/reset-password', [
@@ -219,5 +218,24 @@ class AuthTest extends TestCase
         $response->assertStatus(401);
         $this->assertEquals(401, $response->status());
         $this->assertEquals("Email already verified.", $response_data->data);
+    }
+
+
+    public function test_socialite_user_controller_get_socialite_redirect_google()
+    {
+        $response = $this->get('/login/google');
+        $responseLink = $response->headers->get('location');
+        $responseLink = strtok($responseLink, "?");
+
+        $response->assertRedirect();
+        $this->assertEquals("https://accounts.google.com/o/oauth2/auth", $responseLink);
+
+    }
+    
+    public function test_socialite_user_controller_get_socialite_callback()
+    {
+        $this->markTestIncomplete(
+            'This test has not been implemented yet.'
+        );
     }
 }

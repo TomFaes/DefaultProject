@@ -15,10 +15,10 @@
 
 <script>
     export default {
+        
         data: function() {
         return {
             'user': 'geen user 2',
-
         }
     },
 

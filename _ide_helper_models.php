@@ -12,6 +12,29 @@
 
 namespace App\Models{
 /**
+ * App\Models\SocialiteUser
+ *
+ * @property int $id
+ * @property string $provider
+ * @property int $user_id
+ * @property string $socialite_id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|SocialiteUser newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|SocialiteUser newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|SocialiteUser query()
+ * @method static \Illuminate\Database\Eloquent\Builder|SocialiteUser whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|SocialiteUser whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|SocialiteUser whereProvider($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|SocialiteUser whereSocialiteId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|SocialiteUser whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|SocialiteUser whereUserId($value)
+ */
+	class SocialiteUser extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\User
  *
  * @property int $id
@@ -26,11 +49,13 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property string|null $deleted_at
- * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
+ * @property-read \Illuminate\Notifications\DatabaseNotificationCollection<int, \Illuminate\Notifications\DatabaseNotification> $notifications
  * @property-read int|null $notifications_count
- * @property-read \Illuminate\Database\Eloquent\Collection|\Laravel\Sanctum\PersonalAccessToken[] $tokens
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\SocialiteUser> $socialiteUser
+ * @property-read int|null $socialite_user_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \Laravel\Sanctum\PersonalAccessToken> $tokens
  * @property-read int|null $tokens_count
- * @method static \Database\Factories\UserFactory factory(...$parameters)
+ * @method static \Database\Factories\UserFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|User newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|User newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|User query()

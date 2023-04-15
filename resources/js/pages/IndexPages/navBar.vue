@@ -1,49 +1,32 @@
 <template>
     <div>
-        <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-warning fixed-top" id="mainNav">
-            <div style="width: 200px; /*border: 1px solid black*/">
-                Default Project Setup
-            </div>
-            <!--
-                <router-link :to="{ name: 'home'}" class=".nav-link js-scroll-trigger">Titel</router-link>
-            -->
-
-
-            <div>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-            </div>
-
-            <div class="collapse navbar-collapse" id="navbarResponsive" style="width: 100%">
-                <ul class="navbar-nav ms-auto">
-
-                    <!--
-                    <li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show" v-if="user.role == 'Admin'" >
-                    </li>
-                    <li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show" v-if="user.id > 0" >
-                        <span class="nav-link js-scroll-trigger item-link"  >
-                            <router-link :to="{ name: 'group' }" class=".nav-link js-scroll-trigger">Group</router-link>
-                        </span>
-                    </li>
-
-                    <li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show" v-if="user.id > 0" >
-                        <span class="nav-link js-scroll-trigger item-link"  >
-                            <router-link :to="{ name: 'season' }" class=".nav-link js-scroll-trigger">Seasons</router-link>
-                        </span>
-                    </li>
-
-                    
--->
-                    <li class="nav-item"  data-toggle="collapse" data-target=".navbar-collapse.show" v-if="user.id > 0">
-                          <router-link :to="{ name: 'profile' }" class=".nav-link js-scroll-trigger"><i class="fa fa-user fa-2x "></i></router-link>
-                    </li>
-                    <li class="nav-item"  data-toggle="collapse" data-target=".navbar-collapse.show" v-if="user.id > 0">
-                          <a class="nav-link js-scroll-trigger nav-link js-scroll-trigger item-link" @click.prevent="logout">Logout</a>
-                    </li>
-                    <li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show" v-else>
-                         <router-link :to="{ name: 'login'}" class=".nav-link js-scroll-trigger">Login</router-link>
-                    </li>
-
-                </ul>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-warning fixed-top" id="mainNav">
+            <div class="container-fluid">
+                <!-- Left Side: Logo + Title-->
+                <div style="width: 200px; margin-left: 20px;">
+                    <router-link :to="{ name: 'home'}" class=".nav-link js-scroll-trigger">Logo/Titel</router-link>
+                </div>
+                
+                <!-- Hamburger menu if the screen is small-->
+                <div>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                </div>
+                <!-- All Menu items -->
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show" v-if="user.id > 0">
+                            <router-link :to="{ name: 'profile' }" class=".nav-link js-scroll-trigger"><i class="fa fa-user fa-2x "></i></router-link>
+                        </li>
+                        <li class="nav-item" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show" v-if="user.id > 0">
+                            <a class="nav-link js-scroll-trigger nav-link js-scroll-trigger item-link" @click.prevent="logout">Logout</a>
+                        </li>
+                        <li class="nav-item" data-bs-toggle="collapse"  data-bs-target=".navbar-collapse.show" v-else>
+                            <router-link :to="{ name: 'login'}" class=".nav-link js-scroll-trigger" ><span>Login</span></router-link>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </nav>
         <br><br>
@@ -57,10 +40,11 @@
 
             }
         },
-
-        props: {
-            'user': {},
-
+        
+        computed: {
+            user(){
+                return this.$store.state.loggedInUser;
+            }
         },
 
         methods: {
@@ -89,6 +73,12 @@
     }
     a :hover{
         filter: brightness(80%);
+    }
+
+    li {
+        text-align: right;
+        margin-right: 15px;
+        margin-top: 10px;
     }
 
 </style>

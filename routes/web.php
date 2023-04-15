@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\SocialiteUserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -12,16 +13,11 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-/*$_POST
-Route::get('/', function () {
-    return view('welcome');
-});
-*/
-/*
-Route::get('/', function () {
-    return view('home');
-});
-*/
+
+Route::get('/login/{socialite_provider}', [SocialiteUserController::class, 'getSocialiteRedirect']);
+Route::get('/login/{socialite_provider}/callback', [SocialiteUserController::class, 'getSocialiteCallback']);
+
+
 //vue router will handle all routing
 Route::get('/{any}', function () {
     return view('home');

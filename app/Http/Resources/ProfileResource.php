@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use Socialite;
 
 class ProfileResource extends JsonResource
 {
@@ -21,6 +22,7 @@ class ProfileResource extends JsonResource
             'full_name' => $this->first_name." ".$this->name,
             'email' => $this->email,
             'email_verified_at' => $this->email_verified_at, //used to check if user is verified in router.js
+            'providers' => $this->socialiteUser,
         ];
     }
 }

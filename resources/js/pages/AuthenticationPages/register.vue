@@ -70,8 +70,6 @@ export default {
                 }
             });
         },
-
-
     },
 
     mounted () {

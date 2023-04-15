@@ -1,10 +1,5 @@
 <template>
     <auth-form title="Sign in">
-        <!--
-        <div class="text-center">
-            <img :src="'../public/storage/dev_images/your_logo_here.jpg'" style="width: 185px;" alt="logo">
-        </div>
-        -->
         <form @submit.prevent="handleLogin">
             <input-layout type="text" id="email" name="email" placeholder="Your Email" :errors="errors.email" v-model:value="fields.email"/>
             <input-layout type="password" id="password" name="password" placeholder="Your password" :errors="errors.password" v-model:value="fields.password"/>
@@ -17,6 +12,11 @@
             <p class="mb-0 me-2">Don't have an account?</p>
             <router-link to="register"  class="btn btn-primary btn-block fa-lg color-style mb-3">Create new</router-link>
         </div>
+
+        <div>
+            <a class="provider-icons" role="button" :href="'login/microsoft'"><i class="fab fa-windows"></i> Sign in with Microsoft</a>
+            <a class="provider-icons" style="background-color: #dd4b39;" role="button" :href="'login/google'"><i class="fab fa-google"></i> Sign in with Google</a>
+        </div>
     </auth-form>
 </template>
 <script>
@@ -27,7 +27,6 @@
         components: {
             authForm,
             inputLayout
-
         },
         data: function() {
             return {
